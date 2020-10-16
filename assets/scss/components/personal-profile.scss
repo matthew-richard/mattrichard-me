@@ -2,11 +2,12 @@
   color: $color-text-light;
   font-family: $font-family-title;
   padding-top: 90px;
+  text-shadow: 4px 5px 5px black;
 
   .personal-profile__avatar{
     img{
       border-radius: 5px;
-      box-shadow: 0 0 27px rgba(96, 96, 96, 0.34);
+      box-shadow: 0 0 27px black;
       width: 90%;
       height: 380px;
       object-fit: cover;

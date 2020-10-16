@@ -1,4 +1,4 @@
-.footer{
+.footer {
   color: $color-text-light;
   opacity: 0.4;
   font-size: $font-size-t4;
@@ -9,4 +9,8 @@
   top: 60px;
   position: relative;
   margin-bottom: 30px;
+}
+
+.footer a {
+  color: $color-text-light;
 }
