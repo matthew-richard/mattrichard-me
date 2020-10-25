@@ -7,6 +7,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const notify = require('gulp-notify');
 const cssnano = require('gulp-cssnano');
 const plumber = require('gulp-plumber');
+const child_process = require('child_process');
 
 const scssFiles = ['./assets/scss/**/*.scss'];
 const scssMain = ['./assets/scss/main.scss'];
@@ -44,6 +45,15 @@ gulp.task('watch', () => {
 // Build for prod
 gulp.task('build', function(callback) {
   runSequence(['style-build'], callback)
+});
+
+// Serve static files
+gulp.task('serve', function(callback) {
+   var cmd = child_process.spawn('python',  ['-m', 'SimpleHTTPServer', '80' ], {stdio: 'inherit'});
+   cmd.on('close', function (code) {
+     console.log('Python SimpleHTTPServer exited with code ' + code);
+     callback(code);
+   });
 });
 
 // Default
