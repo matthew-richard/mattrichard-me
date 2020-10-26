@@ -47,11 +47,22 @@ gulp.task('build', function(callback) {
   runSequence(['style-build'], callback)
 });
 
-// Serve static files
-gulp.task('serve', function(callback) {
+// Serve static files over HTTP
+gulp.task('serve-dev', function(callback) {
    var cmd = child_process.spawn('python',  ['-m', 'SimpleHTTPServer', '80' ], {stdio: 'inherit'});
    cmd.on('close', function (code) {
      console.log('Python SimpleHTTPServer exited with code ' + code);
+     callback(code);
+   });
+});
+
+// Serve static files over HTTPS
+gulp.task('serve-prod', function(callback) {
+   var cmd = child_process.spawn('http-server',
+    '-S -C /etc/letsencrypt/live/mattrichard.me/cert.pem -K /etc/letsencrypt/live/mattrichard.me/privkey.pem -p 443'.split(' '),
+    {stdio: 'inherit'});
+   cmd.on('close', function (code) {
+     console.log('http-server exited with code ' + code);
      callback(code);
    });
 });
