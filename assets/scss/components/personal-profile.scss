@@ -9,18 +9,24 @@
       border-radius: 5px;
       box-shadow: 0 0 27px black;
       width: 90%;
-      height: 380px;
       object-fit: cover;
       object-position: top;
       margin-top: 10px;
       position: relative;
       top: 40px;
     }
-  }
 
-  @media screen and (max-width: 990px){
-    .personal-profile__avatar{
-        display: none;
+    @media screen and (max-width: 768px){
+      position: static;
+
+      img {
+        width: 90px;
+        height: 90px;
+        position: absolute;
+        top: unset;
+        bottom: 10px;
+        right: 10px;
+      }
     }
   }
 
