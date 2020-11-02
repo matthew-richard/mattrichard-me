@@ -3,23 +3,24 @@
   line-height: $line-height-t4;
   font-family: $font-family-title;
 
-  dt{
+  .row{
+    margin-bottom: 15px;
+  }
+
+  .contact-list-title{
     float: left;
     font-weight: 700;
     text-transform: uppercase;
   }
 
-  dd{
-    padding-left: 80px;
-    margin-bottom: 15px;
-
+  .contact-list-data{
     a{
       color: $color-text-light;
     }
   }
 
   &.contact-list__opacity-titles{
-    dt{
+    .contact-list-title{
       opacity: 0.4;
     }
   }
