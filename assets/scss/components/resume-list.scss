@@ -22,6 +22,22 @@
       margin: 0;
     }
 
+    h4{
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    ul{
+      margin-left: 25px;
+      list-style: disc;
+
+      ul{
+        list-style: circle;
+        margin-left: 35px;
+      }
+    }
+
     &:before{
       width: 12px;
       height: 12px;
@@ -46,6 +62,14 @@
     font-family: $font-family-title;
     font-weight: 700;
     padding-bottom: 5px;
+  }
+
+  .resume-list__block-position{
+    font-family: $font-family-additional;
+    font-weight: bold;
+    font-size: $font-size-t5;
+    line-height: $line-height-t5;
+    color: $color-accent-additional;
   }
 
   .resume-list__block-date{
