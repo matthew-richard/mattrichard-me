@@ -25,7 +25,7 @@
     h4{
       font-size: $font-size-t4;
       font-weight: bold;
-      margin-top: 15px;
+      margin-top: 18px;
     }
 
     ul{
@@ -35,6 +35,10 @@
       ul{
         list-style: circle;
         margin-left: 35px;
+      }
+
+      li{
+        margin-bottom: 4px;
       }
     }
 
