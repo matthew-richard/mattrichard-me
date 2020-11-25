@@ -83,4 +83,10 @@
     color: $color-text-additional;
     padding-bottom: 10px;
   }
+
+  #extracurriculars{
+    border: solid transparentize($color-accent, 0.8) 1px;
+    border-radius: 10px;
+    padding: 0px 10px;
+  }
 }

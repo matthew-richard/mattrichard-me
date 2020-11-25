@@ -24,7 +24,9 @@ ol, ul{
 }
 
 // Links
-a{
+a,
+/* also format .collapse links*/
+a[data-toggle="collapse"]:not([href]):not([tabindex]){
   color: $color-accent;
   transition: all 0.3s;
   position: relative;
