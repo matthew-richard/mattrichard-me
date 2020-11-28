@@ -1,0 +1,4 @@
+WEBSITE_DOMAIN=mattrichard.me
+WEBSITE_DOCKER_IMAGE_NAME=mattrichard-me
+WEBSITE_CERTBOT_EMAIL=matt.s.richard95@gmail.com
+WEBSITE_REPO=git@github.com:matthew-richard/mattrichard-me.git
