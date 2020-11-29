@@ -4,19 +4,21 @@ FROM ubuntu:18.04
 RUN apt update
 RUN apt upgrade
 
-
-RUN apt install -y \
-  tmux=2.6-3ubuntu0.2 \
-  nodejs=8.10.0~dfsg-2ubuntu0.4 \
-  npm=3.5.2-0ubuntu4 \
-  nginx=1.14.0-0ubuntu1.7 \
-  git
-
-# Install certbot.
-# Use DEBIAN_FRONTEND=noninteractive to avoid installation prompts
+# Install core dependencies
+# Use noninteractive frontend to avoid installation prompts from certbot
 RUN DEBIAN_FRONTEND=noninteractive \
   apt install -y \
-    certbot=0.27.0-1~ubuntu18.04.2
+    tmux=2.6-3ubuntu0.2 \
+    nodejs=8.10.0~dfsg-2ubuntu0.4 \
+    npm=3.5.2-0ubuntu4 \
+    nginx=1.14.0-0ubuntu1.7 \
+    certbot=0.27.0-1~ubuntu18.04.2 \
+    git
+
+# Install utilities
+RUN apt install -y \
+  curl \
+  nano
 
 # Set up npm packages
 RUN npm install --global \

@@ -1,4 +1,21 @@
+# These are environment variables passed to both the docker container
+# and the docker host scripts in docker/host.
+#
+# For the host scripts, this file is evaluated as a bash script, but for the docker container,
+# it is evaluated as a docker env file, which has a more restricted syntax. So, don't try setting these
+# variables to anything other than string literals.
+#
+# Details on the docker env file syntax can be found here:
+# https://docs.docker.com/compose/env-file/
+
+# The domain name of the website, which will be passed to certbot in order to get an SSL certificate.
 WEBSITE_DOMAIN=mattrichard.me
-WEBSITE_DOCKER_IMAGE_NAME=mattrichard-me
+
+# Name of the docker image created by docker/host/build.sh.
+WEBSITE_IMAGE_NAME=mattrichard-me
+
+# Email passed to certbot setup for occasional maintenance notifications.
 WEBSITE_CERTBOT_EMAIL=matt.s.richard95@gmail.com
+
+# Repo URL passed to git clone when cloning the repo in prod mode.
 WEBSITE_REPO=git@github.com:matthew-richard/mattrichard-me.git
