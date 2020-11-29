@@ -14,6 +14,9 @@ WEBSITE_DOMAIN=mattrichard.me
 # Name of the docker image created by docker/host/build.sh.
 WEBSITE_IMAGE_NAME=mattrichard-me
 
+# Name of the docker container created by docker/host/run.sh and docker/host/run-debug.sh.
+WEBSITE_CONTAINER_NAME=mattrichard-me-cont
+
 # Email passed to certbot setup for occasional maintenance notifications.
 WEBSITE_CERTBOT_EMAIL=matt.s.richard95@gmail.com
 

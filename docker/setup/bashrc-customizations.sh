@@ -6,5 +6,5 @@ shopt -s histappend
 HISTSIZE=20000
 HISTFILESIZE=20000
 
-# Hide ugly green backgrounds on NTFS folders
+# Hide ugly green backgrounds on NTFS folders (when running in a Windows host)
 LS_COLORS="ow=01;36;40" && export LS_COLORS

@@ -32,4 +32,5 @@ RUN mkdir /root/repo
 RUN echo "\n. /root/setup/bashrc-customizations.sh" >> /root/.bashrc
 RUN echo "\n. /root/setup/bashprofile-customizations.sh" >> /root/.profile
 
-CMD /root/setup/setup.sh
+ENTRYPOINT ["/bin/sh", "-c"]
+CMD ["/root/setup/setup.sh"]

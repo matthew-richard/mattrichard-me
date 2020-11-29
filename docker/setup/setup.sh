@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ## FUNCTIONS ##
 
 # Check env variable to see if running in debug mode
@@ -7,7 +9,7 @@ is-debug () {
 
 # Function to run command $2 in a tmux window named $1.
 run-in-tmux () {
-  echo "Running command '$2' in tmxu window named '$1'"
+  echo "Running command '$2' in tmux window named '$1'"
 
   # Open window (or use existing unassigned one)
   if [ -z "$TMUX_FIRST_WINDOW_ASSIGNED" ]; then
@@ -129,7 +131,7 @@ echo
 
 echo "INSTRUCTIONS:"
 echo
-echo "To monitor the server, start a shell in this container (with docker exec or SSH) and run 'tmux attach'."
+echo "To monitor the server, start a shell in this container (with docker exec or SSH) and run 'tmux attach'. Alternatively use attach-tmux.sh, if this container was run using run.sh or run-debug.sh."
 echo
 echo "If you're currently attached to this container, you can detach (without killing the container) using Ctrl+P Ctrl+Q."
 echo
