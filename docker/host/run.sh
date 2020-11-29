@@ -3,11 +3,6 @@ cd `dirname $BASH_SOURCE`
 
 REPO_PATH=`realpath ../..`
 
-echo "Running $WEBSITE_IMAGE_NAME image in debug mode"
-echo "Leaving WEBSITE_DEBUG unset"
-echo "Naming container $WEBSITE_CONTAINER_NAME"
-echo
-
 # Print docker command (prepended by ++) when it's executed
 set -o xtrace
 
@@ -17,6 +12,3 @@ docker run \
       --rm \
       --env-file env \
       $WEBSITE_IMAGE_NAME
-
-# Stop printing commands
-set +o xtrace

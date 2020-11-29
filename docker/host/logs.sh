@@ -4,4 +4,5 @@ cd `dirname $BASH_SOURCE`
 # Print docker command (prepended by ++) when it's executed
 set -o xtrace
 
-docker exec -it $WEBSITE_CONTAINER_NAME tmux attach
+# Print setup.sh output with timestamps
+docker logs -t $WEBSITE_CONTAINER_NAME
