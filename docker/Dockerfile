@@ -13,7 +13,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
     npm=3.5.2-0ubuntu4 \
     nginx=1.14.0-0ubuntu1.7 \
     certbot=0.27.0-1~ubuntu18.04.2 \
-    git
+    git \
+    ssh
 
 # Install utilities
 RUN apt install -y \

@@ -6,3 +6,6 @@ app/assets/css
 
 # npm shrinkwrap (due to package compatibility issues)
 app/npm-shrinkwrap.json
+
+# container data
+docker/data
