@@ -131,7 +131,7 @@ echo
 
 echo "INSTRUCTIONS:"
 echo
-echo "To monitor the server, start a shell in this container (with docker exec or SSH) and run 'tmux attach'. Alternatively use attach-tmux.sh, if this container was run using run.sh or run-debug.sh."
+echo "To monitor the server, start a shell in this container (with docker exec or SSH) and run 'tmux attach'. Alternatively use attach.sh, if this container was run using run.sh."
 echo
 echo "If you're currently attached to this container, you can detach (without killing the container) using Ctrl+P Ctrl+Q."
 echo
