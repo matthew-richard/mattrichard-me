@@ -37,6 +37,7 @@ gulp.task('style-build', function () {
 
 // Watcher
 gulp.task('watch', () => {
+  runSequence('style');
   gulp.watch(scssFiles, function(){
     runSequence('style', ['notify']);
   });

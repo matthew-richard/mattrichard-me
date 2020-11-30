@@ -45,6 +45,8 @@ set -o xtrace
 docker run \
       --name $WEBSITE_CONTAINER_NAME \
       -it \
+      -p 443:443 \
+      -p 80:80 \
       $ARG_DETACH \
       $ARG_RM \
       --env-file $REPO_PATH/docker/host/env \
