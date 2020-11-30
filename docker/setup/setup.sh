@@ -49,17 +49,23 @@ echo
 if ! is-debug ; then
   echo "Setting up SSL certificate in prod mode."
 
-  # Check if cert is already present at /etc/letsencrypt/live/mattrichard.me/fullchain.pem
-  # If not present, run
-  # certbot certonly --standalone -d $WEBSITE_DOMAIN -m $WEBSITE_CERTBOT_EMAIL
+  if ! [ -e /etc/letsencrypt/live/$WEBSITE_DOMAIN/fullchain.pem -a \
+         -e /etc/letsencrypt/live/$WEBSITE_DOMAIN/privkey.pem ]; then
 
-  # Verify certificate is now present.
+    echo "Did not find fullchain.pem and privkey.pem in /etc/letsencrypt/live/$WEBSITE_DOMAIN. Requesting certificate via certbot."
 
-  # Create symlinks to /root/cert/fullchain.pem and /root/cert/privkey.pem
+    certbot certonly --agree-tos --noninteractive --standalone -d $WEBSITE_DOMAIN -m $WEBSITE_CERTBOT_EMAIL
+
+    if ! [ -e /etc/letsencrypt/live/$WEBSITE_DOMAIN/fullchain.pem -a \
+           -e /etc/letsencrypt/live/$WEBSITE_DOMAIN/privkey.pem ]; then
+      echo "*** Certificate acquisition failed. Aborting setup. ***"
+      exit
+    fi
+  fi
 
   # Start certificate renewal loop in tmux window.
   echo "Starting certificate renewal loop in tmux window."
-  run-in-tmux cert-renew 'echo "Renewing certificate."'
+  run-in-tmux cert-renew 'while true; do sleep 12h; echo "$(date): Attempting certificate renewal."; certbot renew; done'
 
   # LATER (When nginx added):
     # Create symlinks to /root/cert/fullchain.pem and /root/cert/privkey.pem
@@ -68,6 +74,7 @@ if ! is-debug ; then
 else
   echo "Setting up certificate in debug mode."
   echo "Nothing necessary to set up certificate in debug mode for now."
+
   # LATER (When nginx added):
     # Generate self-signed certificate
     # Symlink (if necessary) to /root/cert/fullchain.pem and /root/cert/privkey.pem
@@ -78,48 +85,60 @@ echo
 if ! is-debug ; then
   echo "Setting up repo in prod mode."
 
-  # Verify SSH key exists at /root/.ssh/id_rsa
+  echo "Cloning repo."
+  if ! { git clone $WEBSITE_REPO /root/repo ; }; then
+    echo "*** Repo cloning failed. Aborting setup. ***"
+    exit
+  fi
 
-  # Verify that repo not already at /root/repo ("Did you attach a volume?")
+  echo "Checking out branch origin/$WEBSITE_REPO_BRANCH"
+  if ! { cd /root/repo && git checkout origin/$WEBSITE_REPO_BRANCH ; }; then
+    echo "*** Repo branch checkout failed. Aborting setup. ***"
+    exit
+  fi
 
-  # Clone repo to /root/repo
-  # git clone $WEBSITE_REPO /root/repo
+  echo "Running npm install in repo."
+  if ! { cd /root/repo/app && npm install ; }; then
+    echo "*** Package installation failed. Aborting setup. ***"
+    exit
+  fi
 
-  # Verify that repo files exist
-
-  # Run npm install on /root/repo/app
 else
   echo "Setting up repo in debug mode."
-  # Verify repo already present at /root/repo ("Did you remember to attach a volume there?")
 
-  # ONLY IF /root/repo/app/node_modules DOESN'T ALREADY EXIST (since otherwise there could be problems
-  # with npm-shrinkwrap)...
-  # Run npm install on /root/repo/app
+  if ! { cd /root/repo/app ; }; then
+    echo "*** Failed to cd into /root/repo/app. The repo should already be attached as a volume in debug mode. Aborting setup. ***"
+    exit
+  fi
+
+  if [ -e node_modules ]; then
+    echo "Found /root/repo/app/node_modules, so skipping 'npm install' to avoid npm-shrinkwrap issues."
+  else
+    echo "Did not find /root/repo/app/node_modules, so running 'npm install'."
+    npm install
+  fi
 fi
 echo
 
 # Setup repo watch
 echo "Running gulp watch in tmux window."
-run-in-tmux watch 'echo "Watching repo."'
-# Run gulp watch in tmux window
+run-in-tmux watch 'cd /root/repo/app && gulp watch'
 echo
 
 # Setup repo mirroring
 if ! is-debug ; then
   echo "Mirroring repo in prod mode."
-  run-in-tmux mirror 'echo "Mirroring repo."'
+  run-in-tmux mirror "cd /root/repo && while true; do echo -n \"\$(date): \"; git fetch; git checkout origin/$WEBSITE_REPO_BRANCH; sleep 10; done"
 fi
 echo
 
 # Setup serve command
 if ! is-debug ; then
   echo "Serving files in prod mode."
-  run-in-tmux serve 'echo "Serving in prod"'
-  # Run gulp serve-prod in tmux window
+  run-in-tmux serve 'cd /root/repo/app && gulp serve-prod'
 else
   echo "Serving files in debug mode."
-  run-in-tmux serve 'echo "Serving in debug mode"'
-  # Run gulp serve-dev in tmux window
+  run-in-tmux serve 'cd /root/repo/app && gulp serve-dev'
 fi
 echo
 

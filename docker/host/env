@@ -22,3 +22,6 @@ WEBSITE_CERTBOT_EMAIL=matt.s.richard95@gmail.com
 
 # Repo URL passed to git clone when cloning the repo in prod mode.
 WEBSITE_REPO=git@github.com:matthew-richard/mattrichard-me.git
+
+# Repo URL passed to git clone when cloning the repo in prod mode.
+WEBSITE_REPO_BRANCH=feature/dockerize
