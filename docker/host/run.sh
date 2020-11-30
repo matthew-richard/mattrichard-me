@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd `dirname $BASH_SOURCE`
 . ./env
 
@@ -45,7 +47,7 @@ docker run \
       -it \
       $ARG_DETACH \
       $ARG_RM \
-      --env-file env \
+      --env-file $REPO_PATH/docker/host/env \
       $ARGS_DEBUG \
       $ARGS_DATA \
       $WEBSITE_IMAGE_NAME

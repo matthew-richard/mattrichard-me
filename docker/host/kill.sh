@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd `dirname $BASH_SOURCE`
 . ./env
 
