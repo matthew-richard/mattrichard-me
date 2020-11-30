@@ -63,6 +63,8 @@ if ! is-debug ; then
     fi
   fi
 
+  echo "Found fullchain.pem and privkey.pem in /etc/letsencrypt/live/$WEBSITE_DOMAIN."
+
   # Start certificate renewal loop in tmux window.
   echo "Starting certificate renewal loop in tmux window."
   run-in-tmux cert-renew 'while true; do sleep 12h; echo "$(date): Attempting certificate renewal."; certbot renew; done'
