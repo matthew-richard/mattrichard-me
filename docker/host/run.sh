@@ -31,8 +31,8 @@ if [[ "$*" == *--nodata* ]]; then
   echo "Container data will not be persisted in a host volume."
 else
   ARGS_DATA="\
-    -v $REPO_ROOT/docker/data/certbot:/etc/letsencrypt \
-    -v $REPO_ROOT/docker/data/ssh:/root/.ssh"
+    -v $REPO_PATH/docker/data/certbot:/etc/letsencrypt \
+    -v $REPO_PATH/docker/data/ssh:/root/.ssh"
 fi
 
 # RUN DOCKER COMMAND #
