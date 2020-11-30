@@ -27,8 +27,6 @@ RUN npm install --global \
   http-server@0.12.3
 
 COPY setup /root/setup
-chmod +x /root/setup/*.sh
-
 RUN mkdir /root/repo
 
 # Add bash customizations
