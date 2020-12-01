@@ -25,3 +25,7 @@ WEBSITE_REPO=git@github.com:matthew-richard/mattrichard-me.git
 
 # Repo URL passed to git clone when cloning the repo in prod mode.
 WEBSITE_REPO_BRANCH=master
+
+# AWS Details (for controlling EC2 instance from Docker container running in debug
+# mode). Optional.
+

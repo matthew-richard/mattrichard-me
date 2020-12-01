@@ -18,6 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
 
 # Install utilities
 RUN apt install -y \
+  awscli=1.18.69-1ubuntu0.18.04.1 \
   curl \
   nano
 
