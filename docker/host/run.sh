@@ -13,6 +13,11 @@ if [[ "$*" == *--debug* ]]; then
     --env WEBSITE_DEBUG=true \
     -v $REPO_PATH/docker/setup:/root/setup \
     -v $REPO_PATH:/root/repo"
+
+  if [ ! -z "$WEBSITE_AWS_CONFIG_HOST_DIR" -a ! -z "$WEBSITE_AWS_EC2_NAME" ]; then
+    echo "Attaching AWS config dir."
+    ARGS_DEBUG="$ARGS_DEBUG -v $WEBSITE_AWS_CONFIG_HOST_DIR:/root/.aws"
+  fi
 else
   echo "Running in prod mode."
 fi
@@ -34,8 +39,7 @@ if [[ "$*" == *--no-data* ]]; then
 else
   ARGS_DATA="\
     -v $REPO_PATH/docker/data/certbot:/etc/letsencrypt \
-    -v $REPO_PATH/docker/data/ssh:/root/.ssh \
-    -v $REPO_PATH/docker/data/aws:/root/.aws"
+    -v $REPO_PATH/docker/data/ssh:/root/.ssh"
 fi
 
 if [[ "$*" == *--no-tty* ]]; then
@@ -44,6 +48,8 @@ if [[ "$*" == *--no-tty* ]]; then
 else
   ARG_TTY="-t"
 fi
+
+
 
 # RUN DOCKER COMMAND #
 

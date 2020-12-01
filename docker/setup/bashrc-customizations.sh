@@ -1,30 +1,37 @@
 
 # AWS shortuts
 
-aws-ec2-get-instance-by-name () {
+aws-ec2-get-instance-id-by-name () {
   aws ec2 describe-instances --output text \
     --filters Name=tag:Name,Values="$1" \
     --query 'Reservations[*].Instances[*].[InstanceId]'
 }
 
+aws-ec2-get-instance-state-by-name () {
+  aws ec2 describe-instances \
+    --instance-ids `aws-ec2-get-instance-id-by-name $1` \
+    --output text \
+    --query 'Reservations[*].Instances[*].[State.Name]'
+}
+
 aws-ec2-start-instance-by-name () {
-  aws ec2 start-instances --instance-ids `aws-ec2-get-instance-by-name $1`
+  aws ec2 start-instances --instance-ids `aws-ec2-get-instance-id-by-name $1`
 }
 
 aws-ec2-stop-instance-by-name () {
-  aws ec2 stop-instances --instance-ids `aws-ec2-get-instance-by-name $1`
+  aws ec2 stop-instances --instance-ids `aws-ec2-get-instance-id-by-name $1`
 }
 
 website-ec2-start () {
-  aws-ec2-start-instance-by-name $WEBSITE_AWS_INSTANCE_NAME
+  aws-ec2-start-instance-by-name $WEBSITE_AWS_EC2_NAME
 }
 
 website-ec2-stop () {
-
+  aws-ec2-stop-instance-by-name $WEBSITE_AWS_EC2_NAME
 }
 
 website-ec2-status () {
-
+  aws-ec2-get-instance-state-by-name $WEBSITE_AWS_EC2_NAME
 }
 
 # Save bash history immediately

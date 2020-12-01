@@ -26,6 +26,11 @@ WEBSITE_REPO=git@github.com:matthew-richard/mattrichard-me.git
 # Repo URL passed to git clone when cloning the repo in prod mode.
 WEBSITE_REPO_BRANCH=master
 
-# AWS Details (for controlling EC2 instance from Docker container running in debug
-# mode). Optional.
+# Host dir to be mounted at /root/.aws, so that AWS commands can be automated
+WEBSITE_AWS_CONFIG_HOST_DIR=/mnt/c/Users/mrich/.aws
+
+# Name of AWS EC2 instance running the website, so it can be brought up and down
+# with shortcuts in setup/bashrc-customizations.sh.
+# Leave blank to skip AWS setup.
+WEBSITE_AWS_EC2_NAME=mattrichard-me
 

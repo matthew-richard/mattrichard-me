@@ -144,6 +144,16 @@ else
 fi
 echo
 
+# Setup AWS
+if is-debug ; then
+  echo "Checking for WEBSITE_AWS_EC2_NAME value"
+  if [ ! -z "$WEBSITE_AWS_EC2_NAME" ] ; then
+    echo "Found EC2 name: $WEBSITE_AWS_EC2_NAME."
+    run-in-tmux aws-manage \
+      'echo "AWS EC2 instance status: `website-ec2-status`" && echo "Also check out website-ec2-start and website-ec2-stop."'
+  fi
+fi
+
 # Select 'serve' window
 tmux select-window -t $TMUX_SESSION_NAME:serve
 
