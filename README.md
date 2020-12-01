@@ -1,22 +1,23 @@
-# mattrichard-me
+# mattrichard.me 🧑‍💻 #
 
-This is the source for my personal website [mattrichard.me](https://mattrichard.me).
+This is the source for my personal website [mattrichard.me](https://mattrichard.me), which is one part resume, two parts playground for web development.
 
 The site's theme is originally based on the [SpirIT template from themeforest.net](https://themeforest.net/item/spirit-portfolioresume-html-template-for-developers-programmers-and-freelancers/17094383).
 
-The site uses [Docker](https://www.docker.com/) to provide a consistent, virtualized development environment across the test instance on my home machine and the prod instance I have deployed to an [AWS EC2](https://aws.amazon.com/ec2) instance.
+The core logic of the site (located in `app/`) is a [NodeJS](https://nodejs.org/en/) app that uses the minimalist [express](https://expressjs.com/) web framework. [Nginx](https://www.nginx.com/) takes care of the boring stuff, e.g. redirecting plain old HTTP to HTTPS, before passing control the the NodeJS app by [acting as a reverse proxy](https://www.sitepoint.com/configuring-nginx-ssl-node-js/).
 
-The site automatically stands up an environment in [tmux](https://github.com/tmux/tmux/wiki), a terminal multiplexer, to provide a barebones, terminal-based server monitoring UI, as well as to generate a convenient development environment on my home machine when the site is run in debug mode.
+The site uses a [Docker](https://www.docker.com/) image (defined in `docker/`) to provide a consistent, virtualized, Ubuntu-based development environment across the test instances on my home machine and the prod instance I have deployed to an [AWS EC2](https://aws.amazon.com/ec2) virtual machine.
 
-https://medium.com/@pentacent/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71
+The Docker image stands up a session in [tmux](https://github.com/tmux/tmux/wiki), a terminal multiplexer, to provide a barebones, console-based server monitoring UI, as well as to generate a convenient development environment for my home machine when the site is run in debug mode.
 
-### A Note On Virtualization ###
 
-I'd hesitate to say this site is "containerized", since it doesn't follow the Docker convention of keeping about one process per container. Instead, I install a bunch of packages to one Ubuntu 18.04 LTS image and effectively treat it as my own little virtual machine. In some sense I'm using Docker in the way [Vagrant](https://www.vagrantup.com/) is intended to be used.
+# File Structure #
 
-There are some limitations to this approach compared to a full fledged virtual machine, namely that [you can't make systemd services in Docker containers](https://stackoverflow.com/questions/60928901/systemctl-command-doesnt-work-inside-docker-container), but for the most part I'm quite satisfied with it.
+```
+app/ -
 
-So, though the site isn't quite containerized, it's certainly virtualized.
+docker/ - Files
+```
 
 # Two Ways to Run #
 
@@ -32,7 +33,7 @@ When you start in prod mode, the image automatically tries to grab an SSL certif
 
 Debug mode is for when you're testing and modifying the site on a dev machine. It's probably what you'll run first.
 
-Debug mode uses self-signed SSL certificates, and instead of constantly monitoring the repo, it attaches a volume to the docker image so that you can modify files locally and see the results in real time.
+Debug mode uses self-signed SSL certificates, and instead of constantly monitoring the repo, it attaches a volume to the docker image so that you can modify files locally and see the results in real time, without the ceremony or commitment of pushing to the repo.
 
 If you provide AWS credentials, debug mode can also provide convenient shortcuts for stopping, starting, and monitoring the EC2 instances that are running the site in prod mode.
 
@@ -57,3 +58,4 @@ To run this website on a machine in prod mode:
 * Fork this repo. Modify `docker/host/env` to point to the new repo URL.
 * Generate SSH keys with access to the forked repo, and populate `docker/data/ssh` with them. (More instructions are in README.md of `docker/data/ssh`)
 * Ensure that you've configured DNS to resolve to the domain you specified in `docker/host/env` (e.g. mattrichard.me). Otherwise, the Docker image will fail to acquire an SSL certificate via [certbot](https://certbot.eff.org/) and the setup process will terminate.
+* Run `docker/data/run.sh`, which will start the Docker container created by `build.sh`
