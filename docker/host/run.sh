@@ -29,12 +29,19 @@ else
   ARG_RM="--rm"
 fi
 
-if [[ "$*" == *--nodata* ]]; then
+if [[ "$*" == *--no-data* ]]; then
   echo "Container data will not be persisted in a host volume."
 else
   ARGS_DATA="\
     -v $REPO_PATH/docker/data/certbot:/etc/letsencrypt \
     -v $REPO_PATH/docker/data/ssh:/root/.ssh"
+fi
+
+if [[ "$*" == *--no-tty* ]]; then
+  echo "Not using TTY (Probably being run as a systemd service)."
+  ARG_TTY=""
+else
+  ARG_TTY="-t"
 fi
 
 # RUN DOCKER COMMAND #
@@ -44,7 +51,8 @@ set -o xtrace
 
 docker run \
       --name $WEBSITE_CONTAINER_NAME \
-      -it \
+      -i \
+      $ARG_TTY \
       -p 443:443 \
       -p 80:80 \
       $ARG_DETACH \

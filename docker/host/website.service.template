@@ -1,0 +1,12 @@
+[Unit]
+Description=WEBSITE_IMAGE_NAME startup service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=REPO_PATH/docker/host/run.sh --no-tty
+ExecStop=REPO_PATH/docker/host/kill.sh
+
+[Install]
+WantedBy=multi-user.target
