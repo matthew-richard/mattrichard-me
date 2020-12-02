@@ -46,12 +46,6 @@ tmux new-session -d -s $TMUX_SESSION_NAME
 echo
 
 # Nginx setup
-echo "Replacing variables in Nginx app.conf."
-cat /etc/nginx/conf.d/app.conf | \
-  sed "s/WEBSITE_DOMAIN/$WEBSITE_DOMAIN/g" | \
-  tee /etc/nginx/conf.d/app.conf
-echo
-
 echo "Setting up dummy self-signed SSL certificate."
 mkdir -p /root/cert/dummy
 openssl req -x509 -nodes -newkey rsa:4096 -days 30 \
@@ -61,6 +55,7 @@ ln -s /root/cert/dummy/fullchain.pem /root/cert/fullchain.pem
 ln -s /root/cert/dummy/privkey.pem /root/cert/privkey.pem
 
 echo "Serving files with nginx using self-signed cert."
+rm /etc/nginx/sites-enabled/default # Disable nginx default site
 run-in-tmux serve 'nginx -g "daemon off;"'
 echo
 
