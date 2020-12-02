@@ -39,7 +39,8 @@ if [[ "$*" == *--no-data* ]]; then
 else
   ARGS_DATA="\
     -v $REPO_PATH/docker/data/certbot:/etc/letsencrypt \
-    -v $REPO_PATH/docker/data/ssh:/root/.ssh"
+    -v $REPO_PATH/docker/data/ssh:/root/.ssh \
+    -v $REPO_PATH/docker/data/nginx:/etc/nginx/conf.d"
 fi
 
 if [[ "$*" == *--no-tty* ]]; then

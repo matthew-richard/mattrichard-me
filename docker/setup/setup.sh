@@ -45,6 +45,26 @@ echo "Starting tmux session named '$TMUX_SESSION_NAME'."
 tmux new-session -d -s $TMUX_SESSION_NAME
 echo
 
+# Nginx setup
+echo "Replacing variables in Nginx app.conf."
+cat /etc/nginx/conf.d/app.conf | \
+  sed "s/WEBSITE_DOMAIN/$WEBSITE_DOMAIN/g" | \
+  tee /etc/nginx/conf.d/app.conf
+echo
+
+echo "Setting up dummy self-signed SSL certificate."
+mkdir -p /root/cert/dummy
+openssl req -x509 -nodes -newkey rsa:4096 -days 30 \
+            -keyout /root/cert/dummy/privkey.pem -out /root/cert/dummy/fullchain.pem \
+            -subj '/CN=localhost'
+ln -s /root/cert/dummy/fullchain.pem /root/cert/fullchain.pem
+ln -s /root/cert/dummy/privkey.pem /root/cert/privkey.pem
+
+echo "Serving files with nginx using self-signed cert."
+run-in-tmux serve 'nginx -g "daemon off;"'
+echo
+
+
 # Certificate setup
 if ! is-debug ; then
   echo "Setting up SSL certificate in prod mode."
@@ -54,7 +74,9 @@ if ! is-debug ; then
 
     echo "Did not find fullchain.pem and privkey.pem in /etc/letsencrypt/live/$WEBSITE_DOMAIN. Requesting certificate via certbot."
 
-    certbot certonly --agree-tos --noninteractive --standalone -d $WEBSITE_DOMAIN -m $WEBSITE_CERTBOT_EMAIL
+    certbot certonly --agree-tos --noninteractive \
+                     --webroot -w /etc/letsencrypt/www \
+                     -d $WEBSITE_DOMAIN -m $WEBSITE_CERTBOT_EMAIL
 
     if ! [ -e /etc/letsencrypt/live/$WEBSITE_DOMAIN/fullchain.pem -a \
            -e /etc/letsencrypt/live/$WEBSITE_DOMAIN/privkey.pem ]; then
@@ -63,23 +85,17 @@ if ! is-debug ; then
     fi
   fi
 
-  echo "Found fullchain.pem and privkey.pem in /etc/letsencrypt/live/$WEBSITE_DOMAIN."
+  echo "Using fullchain.pem and privkey.pem in /etc/letsencrypt/live/$WEBSITE_DOMAIN."
+  ln -sf /etc/letsencrypt/live/$WEBSITE_DOMAIN/fullchain.pem /root/cert/fullchain.pem
+  ln -sf /etc/letsencrypt/live/$WEBSITE_DOMAIN/privkey.pem /root/cert/privkey.pem
+
+  echo "Reloading nginx config to use new certs."
+  nginx -s reload
 
   # Start certificate renewal loop in tmux window.
-  echo "Starting certificate renewal loop in tmux window."
-  run-in-tmux cert-renew 'while true; do sleep 12h; echo "$(date): Attempting certificate renewal."; certbot renew; done'
-
-  # LATER (When nginx added):
-    # Create symlinks to /root/cert/fullchain.pem and /root/cert/privkey.pem
-    # Add nginx reload command to certificate renewal loop
-
-else
-  echo "Setting up certificate in debug mode."
-  echo "Nothing necessary to set up certificate in debug mode for now."
-
-  # LATER (When nginx added):
-    # Generate self-signed certificate
-    # Symlink (if necessary) to /root/cert/fullchain.pem and /root/cert/privkey.pem
+  echo "Starting certificate renewal loop."
+  run-in-tmux cert-renew \
+    'while true; do sleep 12h; echo "$(date): Attempting certificate renewal."; certbot renew; nginx -s reload; done'
 fi
 echo
 
@@ -131,16 +147,6 @@ echo
 if ! is-debug ; then
   echo "Mirroring repo in prod mode."
   run-in-tmux mirror "cd /root/repo && while true; do echo -n \"\$(date): \"; git fetch; git checkout origin/$WEBSITE_REPO_BRANCH; sleep 10; done"
-fi
-echo
-
-# Setup serve command
-if ! is-debug ; then
-  echo "Serving files in prod mode."
-  run-in-tmux serve 'cd /root/repo/app && gulp serve-prod'
-else
-  echo "Serving files in debug mode."
-  run-in-tmux serve 'cd /root/repo/app && gulp serve-dev'
 fi
 echo
 
