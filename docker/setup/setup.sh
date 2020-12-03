@@ -56,7 +56,7 @@ ln -s /root/cert/dummy/privkey.pem /root/cert/privkey.pem
 
 echo "Serving files with nginx using self-signed cert."
 rm /etc/nginx/sites-enabled/default # Disable nginx default site
-run-in-tmux serve 'nginx -g "daemon off;"'
+run-in-tmux nginx 'nginx -g "daemon off;"'
 echo
 
 
@@ -134,6 +134,11 @@ else
 fi
 echo
 
+# Setup NodeJS app
+echo "Running NodeJS app."
+run-in-tmux app 'cd /root/repo/app && node app.js'
+echo
+
 # Setup repo watch
 echo "Running gulp watch in tmux window."
 run-in-tmux watch 'cd /root/repo/app && gulp watch'
@@ -151,13 +156,13 @@ if is-debug ; then
   echo "Checking for WEBSITE_AWS_EC2_NAME value"
   if [ ! -z "$WEBSITE_AWS_EC2_NAME" ] ; then
     echo "Found EC2 name: $WEBSITE_AWS_EC2_NAME."
-    run-in-tmux aws-manage \
+    run-in-tmux aws \
       'echo "AWS EC2 instance status: `website-ec2-status`" && echo "Also check out website-ec2-start and website-ec2-stop."'
   fi
 fi
 
-# Select 'serve' window
-tmux select-window -t $TMUX_SESSION_NAME:serve
+# Select first opened window
+tmux select-window -t $TMUX_SESSION_NAME:0
 
 echo "*** Dockerized website setup complete. ***"
 echo
