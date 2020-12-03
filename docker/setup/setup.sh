@@ -69,6 +69,7 @@ if ! is-debug ; then
 
     echo "Did not find fullchain.pem and privkey.pem in /etc/letsencrypt/live/$WEBSITE_DOMAIN. Requesting certificate via certbot."
 
+    mkdir /etc/letsencrypt/www
     certbot certonly --agree-tos --noninteractive \
                      --webroot -w /etc/letsencrypt/www \
                      -d $WEBSITE_DOMAIN -m $WEBSITE_CERTBOT_EMAIL
