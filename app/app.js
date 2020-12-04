@@ -8,6 +8,11 @@ app.get('/', function (req, res) {
   res.sendFile('index.html', { root: __dirname });
 })
 
+console.log("Serving extra details at /details.");
+app.get('/details', function (req, res) {
+  res.sendFile('index.html', { root: __dirname });
+})
+
 console.log("Serving assets.");
 app.use('/assets/js', express.static('assets/js'));
 app.use('/assets/img', express.static('assets/img'));
