@@ -277,7 +277,10 @@
           <p class="resume-list__block-date">January 2015 - September 2015 (Baltimore, MD)</p>
           <div>
             <ul>
-              <li>Programmed with <a href="https://www.opengl.org" target="_blank">OpenGL</a> in Java to generate images of randomized 3D objects for <a href="https://krieger.jhu.edu/mbi/directory/ed-connor/" target="_blank">Dr. Ed Connor</a>'s research into the mammalian visual cortex.</li>
+              <li>Prototyped a <a href="https://www.blender.org/" target="_blank">Blender</a>-based parametrized scene generator for <a href="https://krieger.jhu.edu/mbi/directory/ed-connor/" target="_blank">Dr. Ed Connor</a>'s <a href="https://en.wikipedia.org/wiki/Evolutionary_algorithm" target="_blank">evolutionary algorithm</a>-based research into the mammalian visual cortex.</li>
+              <li class="unnecessary-detail">Dr. Connor had formerly been using an OpenGL and Java based implementation to generate scenes entirely programmatically. Switching to Blender scripts would have allowed for manual coarse control over the images produced (via manipulation of the scene in the Blender GUI) while allowing for programmatic modification, which was necessary for the the lab's <a href="https://en.wikipedia.org/wiki/Evolutionary_algorithm" target="_blank">evolutionary algorithms</a> to measure neurological responses to various image stimuli and then tweak those stimuli accordingly.</li>
+              <li class="unnecessary-detail">One of the prototypes was a Blender script that automatically ran a physics sim and rendered the result using Blender's ray tracing engine. This was applicable to Dr. Connor's work, since his lab was interested in determining whether certain neurons were specialized to detect physically stable (i.e. firmly planted on the ground, not precarious) object scenes, as opposed to physically unstable ones (e.g. a cube resting on one of its corners).</li>
+              <li class="unnecessary-detail">Repo containing scripts is <a href="https://github.com/matthew-richard/connor-lab" target="_blank">here</a></li>
             <ul>
           </div>
         </div>
