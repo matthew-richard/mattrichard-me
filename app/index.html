@@ -164,12 +164,35 @@
           <p class="resume-list__block-position">Software Engineer</p>
           <p class="resume-list__block-date">November 2017 - Present (Boston, MA and New York, NY)</p>
           <div>
-            <p class="resume-list__block-intro">Developed both frontend and backend components of <a href="https://www.virtu.com/solutions/workflow/" target="_blank">Triton Valor</a>, Virtu's flagship Execution Management System for traders:</p>
+            <p class="resume-list__block-intro">Worked as full-stack developer on <a href="https://www.virtu.com/solutions/workflow/" target="_blank">Triton Valor</a>, Virtu's flagship Windows desktop trading software:</p>
             <ul>
-              <li>Programmed in C#, with .NET's <a href="https://docs.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf" target="_blank">WPF</a> frontend framework, using <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel" target="_blank">MVVM</a> pattern in a multithreaded environment.</li>
+              <li>Programmed in C#, with .NET's <a href="https://docs.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf" target="_blank">WPF</a> frontend framework, using <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel" target="_blank">MVVM</a> pattern<span class="unnecessary-detail"> in a multithreaded environment</span>.</li>
               <li>Worked with both Git and SVN version control.</li>
               <li>Applied test-driven development principles, writing thorough unit tests in the <a href="https://nunit.org/" target="_blank">NUnit</a> framework.</li>
-              <li class="unnecessary-detail">Facilitated adoption of <a href="https://www.splunk.com/" target="_blank">Splunk</a> log analysis software, allowing for automated analysis of app behavior across user base and streamlined diagnosis of support issues.</li>
+              <li>Facilitated integration of <a href="https://www.splunk.com/" target="_blank">Splunk</a> log analysis software into dev team's workflow, enabling rapid analysis of app behavior across dev and QA instances.</li>
+              <div>
+                <li>Implemented frontend component of single-sign-on login workflow. Implemented front- and backend components of single-sign-on password reset workflow.</li>
+                <ul class="unnecessary-detail">
+                  <li>For login: Integrated with Nader's TSFApi changes, where Valor invoked FetchCredentials and supplied a callback for entering the SSO passcode.</li>
+                  <div>
+                    <li>For password reset: There was an existing web endpoint which took care of changing the password of Windows domain users once you provided the user and a new password. It also provided an intermediate step where you marked a password change attempt (represented by a GUID) as "verified" once the emailed passcode had been entered by the user.</li>
+                    <ul>
+                      <li>(1) I implemented the endpoint of the middleman SSO web api which triggered the one-time passcode sent to the user's email, and then verified that the passcode entered by the client was valid before invoking the existing password change endpoint. </li>
+                      <li>(2) I implemented the TSF Api (frontend library) changes which invoked the middleman SSO web API to trigger the passcode email, then invoked the frontend-provided (Valor-provided) callback which supplied the passcode entered by the user, then passed the entered passcode, along with the entered new password, to the SSO web api to finalize the password change. </li>
+                      <li>(3) I implemented the Valor (frontend) changes which prompted for the SSO passcode and passed it to TSFApi.</li>
+                    </ul>
+                  </div>
+                </ul>
+              </div>
+              <div>
+                <li>Automated various development tasks via Powershell and Bash scripting.</li>
+                <ul class="unnecessary-detail">
+                  <li>Copied Valor workspaces (stored in SQL database) across versions and across users</li>
+                  <li>Upgraded Nuget packages across every project in the repo</li>
+                  <li>Installed requested versions of Valor from our build machine.</li>
+                  <li>Started Valor logged in as a given user. Ability to Set-ActiveTPUser, Set-ActiveValorExeDir, and then bind those commands to hotkeys.</li>
+                </ul>
+              </div>
             </ul>
           </div>
         </div>
@@ -178,11 +201,27 @@
           <p class="resume-list__block-position">Research Assistant</p>
           <p class="resume-list__block-date">February 2017 - August 2017 (Baltimore, MD)</p>
           <div>
-            <p class="resume-list__block-intro">Coordinated technical setup for PASCAL in Detail competition, where participants competed to develop the most effective multi-task computer vision algorithm:</p>
+            <p class="resume-list__block-intro">Coordinated technical setup for PASCAL in Detail competition, where participants competed to develop the most intelligent multi-task computer vision algorithm:</p>
             <ul>
-              <li>Wrote script for generating competition's dataset from manually annotated images. Trained undergrad students to produce annotations using the script. (MATLAB)</li>
-              <li>Wrote <a href="https://github.com/ccvl/detail-api" target="_blank">API</a> for working with the competition's dataset. (Python)</li>
-              <li>Set up automatic submission evaluation pipeline by deploying a <a href="https://codalab.org/" target="_blank">Codalab</a> Docker image to the Azure cloud platform.</li>
+              <div>
+                <li>Wrote MATLAB script that generated the competition's multi-task dataset from multiple single-task datasets. </li>
+                  <ul class="unnecessary-detail">
+                    <li>Tasks: Semantic (categories, e.g. human, horse), Instance (category, but segmented by instance, e.g. individual humans were segmented to different layers), Part (e.g. arm, leg), Occlusion (identify category on either side of occlusion boundary), Boundary (identify boundaries between categories), Action (identify action being performed by human, e.g. lifting), Keypoints (identify joints of human)</li>
+                  </ul>
+              </div>
+              <div>
+                <li>Wrote <a href="https://github.com/ccvl/detail-api" target="_blank">Python API</a> for working with the competition's multi-task dataset (forked from the <a href="https://github.com/cocodataset/cocoapi" target="_blank">MS COCO dataset API</a>).</li>
+                <ul class="unnecessary-detail">
+                  <li>Added getMask(), getAnns(), getImgs(), getCats(), getBounds(), getOccl() functions, as well as show*() functions to visualize those tasks' data</li>
+                  <li>Personal repo clone is <a href="https://github.com/matthew-richard/detail-api" target="_blank">here</a>. Personal dev repo clone is <a href="https://github.com/matthew-richard/detail-dev" target="_blank">here</a></li>
+                </ul>
+              </div>
+              <div>
+                <li>Set up automatic submission evaluation pipeline by deploying a <a href="https://codalab.org/" target="_blank">Codalab</a> Docker image to the Azure cloud platform.</li>
+                <ul class="unnecessary-detail">
+                  <li>We got the Codalab image successfully deployed, but progress stalled on completely defining the "competition bundle" that would invoke the evaluation functions we'd written into the Python API.</li>
+                </ul>
+              </div>
             </ul>
           </div>
         </div>
@@ -192,11 +231,31 @@
           <p class="resume-list__block-date">March 2016 - September 2016 (Madison, CT)</p>
           <div>
             <ul>
-              <li>Implemented frontend and backend password reset functionality for online .NET-based storefront. (C#, HTML, CSS, JS).</li>
-              <li>Implemented frontend (including Bootstrap-based test site) and backend to a third-party <span class="unnecessary-detail">SOAP message-based </span>payment processing platform for refilling client gift cards.  (C#, HTML, CSS, JS).</li>
-              <li class="unnecessary-detail">Drafted requirements for backend of loan-making app, speccing out a RESTful web API and relational database schema.</li>
-              <li>Coded in PHP on WordPress and Drupal sites to fix bugs.</li>
-              <li>Spoke directly with clients to ensure needs were met.</li>
+              <div>
+                <li>Implemented frontend and backend password reset functionality for online .NET-based storefront. (C#, HTML, CSS, JS).</li>
+                <ul class="unnecessary-detail">
+                  <li>Invoke passwordreset endpoint -> Generate email with security code URL -> Set password at URL, submit form -> Set password in database, invalidate security stamp.</li>
+                  <li>Passwords were stored as hashes, and they were hashed with a <a href="https://www.okta.com/blog/2019/03/what-are-salted-passwords-and-password-hashing/" target="_blank">salt</a> unique to each user (random string stored in a separate table column), so that even if the datbase was compromised, hackers would not be able to deduce original passwords with a rainbow table attack.</li>
+                </ul>
+              </div>
+              <div>
+                <li>Implemented frontend (including Bootstrap-based test site) and backend interface to a third-party <span class="unnecessary-detail">SOAP message-based </span>payment gateway platform for refilling client gift cards.  (C#, HTML, CSS, JS).</li>
+                <ul class="unnecessary-detail">
+                  <li>The payment processor was called CardDog.</li>
+                  <li>Test site source <a href="https://github.com/matthew-richard/PaymentGatewayLib" target="_blank">here</a>.</li>
+                </ul>
+              </div>
+              <div>
+                <li>Drafted requirements for backend of loan sales app, speccing out a RESTful web API and relational database schema.</li>
+                <ul class="unnecessary-detail">
+                  <li>App's purpose was to walk users through the process of signing up for a loan for installing green energy appliances in their home, e.g. solar panels on their roof. They could enter their FICO score to see if they were eligible for a given loan. They could enter the estimated total cost of their project (e.g. solar panel installation), combined with rebates they were eligible for, and get an estimated total monthly cost, as well as see what loans their project was eligible for.</li>
+                  <li>Specs defined CRUD operations (as stored procedures in database, invoked by web API) for User, Project, Loan, and Rebate objects.</li>
+                  <li>Specs available in Google Drive.</li>
+                </ul>
+              </div>
+              <li class="unnecessary-detail">Coded in PHP on WordPress and Drupal sites to fix bugs.</li>
+              <li class="unnecessary-detail">Reduced uhy-us.com downtime by 8 hours/week by discovering a bug in one of its DotNetNuke (content management system) modules. Specifically, there was a 'site indexing' task causing the crash.</li>
+              <li class="unnecessary-detail">Spoke directly with clients to ensure needs were met.</li>
             </ul>
           </div>
         </div>
@@ -206,8 +265,8 @@
           <p class="resume-list__block-date">June 2015 - August 2015 (Laurel, MD)</p>
           <div>
             <ul>
-              <li>Programmed driver for recently-released depth-sensing cameras as part of integration with a <a href="https://pointclouds.org/" target="_blank">mature computer vision library</a>. (C++)</li>
-              <li>Contributed to app which visualized point cloud data from depth-sensing camera.</li>
+              <li>Programmed TCP/IP interface to recently-released depth-sensing cameras, integrating them with a <a href="https://pointclouds.org/" target="_blank">mature computer vision library</a>. (C++)</li>
+              <li>Contributed to app which generated mesh from camera depth data. Offloaded data processing to separate thread, dramatically improving app responsiveness.</li>
               <li class="unnecessary-detail">Gained experience with: Point cloud processing using <a href="https://pointclouds.org/" target="_blank">PCL</a>, building with <a href="https://cmake.org/" target="_blank">CMake</a>, developing in <a href="https://eclipse.org/" target="_blank">Eclipse</a>, TCP/IP over USB using <a href="https://www.boost.org/doc/libs/1_74_0/doc/html/boost_asio.html" target="_blank">Boost::Asio</a>, multithreading using <a href="https://www.boost.org/doc/libs/1_74_0/doc/html/thread.html" target="_blank">Boost::Threads</a>, building GUIs in the <a href="https://qt.io/" target="_blank">Qt</a> framework</li>
             </ul>
           </div>

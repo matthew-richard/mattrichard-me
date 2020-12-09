@@ -14,9 +14,8 @@ The Docker image stands up a session in [tmux](https://github.com/tmux/tmux/wiki
 # File Structure #
 
 ```
-app/ -
-
-docker/ - Files
+app/ - The NodeJS app.
+docker/ - The docker image definition.
 ```
 
 # Two Ways to Run #
