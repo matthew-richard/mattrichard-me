@@ -193,6 +193,7 @@
                   <li>Started Valor logged in as a given user. Ability to Set-ActiveTPUser, Set-ActiveValorExeDir, and then bind those commands to hotkeys.</li>
                 </ul>
               </div>
+              <li class="unnecessary-detail">Team used Jenkins for continuous integration and Bitbucket for Git hosting.</li>
             </ul>
           </div>
         </div>
@@ -265,8 +266,30 @@
           <p class="resume-list__block-date">June 2015 - August 2015 (Laurel, MD)</p>
           <div>
             <ul>
-              <li>Programmed TCP/IP interface to recently-released depth-sensing cameras, integrating them with a <a href="https://pointclouds.org/" target="_blank">mature computer vision library</a>. (C++)</li>
-              <li>Contributed to app which generated mesh from camera depth data. Offloaded data processing to separate thread, dramatically improving app responsiveness.</li>
+              <div>
+                <li>Programmed TCP/IP interface to recently-released depth-sensing cameras, integrating them with a <a href="https://pointclouds.org/" target="_blank">mature computer vision library</a>. (C++)</li>
+                <ul class="unnecessary-detail">
+                  <li>Relevant repos: <a href="https://github.com/matthew-richard/epc_grabber" target="_blank">epc_grabber</a>, <a href="https://github.com/matthew-richard/epc_grabber-eclipse" target="_blank">epc_grabber-eclipse</a>, <a href="https://github.com/matthew-richard/apl-internship" target="_blank">apl-internship</a></li>
+                  <li>Camera ran its own Linux distro. I connected it via USB and ssh'd into its IP address.</li>
+                  <li>I cross-compiled the source for the device's provided "data server" and installed it to the device so that it supplied the data we needed over TCP/IP.</li>
+                  <li>The data server took commands over a raw TCP/IP socket connection.</li>
+                  <li>First I wrote a simple interactive command line client which passed stdin commands to the camera. First the commands and their parameters were converted to byte arrays, then they were sent over the socket.</li>
+                  <li>Wrapped the string-to-byte conversion and socket setup in an "EPCConnection" class.</li>
+                  <li>Exposed only valid device commands (with their typed parameters) as methods in an "EPCDevice" class.</li>
+                  <li>EPCDevice also handled casting byte arrays back to the desired output format, e.g. a string, or an image (Image data had an "interleaved rows" format which was reversed by EPCDevice as well)</li>
+                  <li>Finally wrapped EPCDevice in an implementation of the third-party library's "grabber" interface. In this way the architecture decoupled the device-specific logic from the library, to allow for easily switching to a new library in the future.</li>
+                </ul>
+              </div>
+              <div>
+                <li>Contributed to app which generated mesh from camera depth data. Offloaded data processing to separate thread, dramatically improving app responsiveness.</li>
+                <ul class="unnecessary-detail">
+                  <li>Relevant repo <a href="https://github.com/matthew-richard/in-hand-scanner" target="_blank">here</a></li>
+                  <li>This was a modified version of PCL's in-hand-scanner app, which generated 3D meshes from consecutive frames of depth data. Adjacent frames were aligned (<a href="https://en.wikipedia.org/wiki/Image_registration" target="_blank">registered</a>) using <a href="https://en.wikipedia.org/wiki/Iterative_closest_point" target="_blank">Iterative Closest Point</a> and then integrated into a single mesh.</li>
+                  <li>The out-of-the-box app was intended for low-throughput devices (or for pre-processed frame data). It processed data on the main thread. A few seconds of streaming data from the Microsoft Kinect to the program would keep the UI frozen for minutes.</li>
+                  <li>To fix this, I spawned a second thread and queued up the frames of point cloud data there, but, the queue was expanding indefinitely.</li>
+                  <li>To manage the expanding queue, I notified the main thread when the queue was at capacity, enabling a "resume scanning" button and displaying a visual indicator of the size of the queue. I also added an option to drop every Nth frame.</li>
+                </ul>
+              </div>
               <li class="unnecessary-detail">Gained experience with: Point cloud processing using <a href="https://pointclouds.org/" target="_blank">PCL</a>, building with <a href="https://cmake.org/" target="_blank">CMake</a>, developing in <a href="https://eclipse.org/" target="_blank">Eclipse</a>, TCP/IP over USB using <a href="https://www.boost.org/doc/libs/1_74_0/doc/html/boost_asio.html" target="_blank">Boost::Asio</a>, multithreading using <a href="https://www.boost.org/doc/libs/1_74_0/doc/html/thread.html" target="_blank">Boost::Threads</a>, building GUIs in the <a href="https://qt.io/" target="_blank">Qt</a> framework</li>
             </ul>
           </div>
