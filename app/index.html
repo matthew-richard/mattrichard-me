@@ -130,17 +130,37 @@
           <p class="resume-list__block-position">GPA: 3.57</p>
           <p class="resume-list__block-date">2013 - 2017 (Baltimore, MD)</p>
           <div>
-            <p><a href="/assets/pdf/matt_richard_jhu_transcript.pdf" target="_blank">Unoffical transcript</a></p>
-            <p><a href="https://github.com/matthew-richard?tab=repositories" target="_blank">Some completed assignments are on Github</a></p>
-            <a data-toggle="collapse" data-target="#extracurriculars">Extracurriculars</a>
-            <div id="extracurriculars" class="collapse">
+            <p class="unnecessary-detail"><a href="/assets/pdf/matt_richard_jhu_transcript.pdf" target="_blank">Unoffical transcript</a></p>
+            <p class="unnecessary-detail"><a href="https://github.com/matthew-richard?tab=repositories" target="_blank">Some completed assignments are on Github</a></p>
+            <div>
+              <h4>Notable Courses</h4>
+              <ul class="inline-rectangle-list">
+                <li>Algorithms</li>
+                <li>Parallel Programming</li>
+                <li>Distributed Systems</li>
+                <li>Computer Vision</li>
+                <li>Computer Graphics</li>
+                <li>User Interfaces & Mobile Applications</li>
+                <li>High Performance Computing in Computational Medicine</li>
+                <li>Space Vehicle Dynamics</li>
+                <li>Probabilistic Models of the Visual Cortex</li>
+                <li>Compressed Sensing</li>
+                <li>Multivariable Calculus</li>
+                <li>Linear Algebra</li>
+                <li>Differential Equations</li>
+                <li>Probability and Statistics</li>
+                <li>Physics I & II</li>
+              </ul>
+            </div>
+            <!-- <a data-toggle="collapse" data-target="#extracurriculars">Extracurriculars</a>-->
+            <div id="extracurriculars"><!-- class="collapse"> -->
               <div>
                 <h4>JHU Robotics Club</h4>
                 <ul>
                   <li>As president, established club infrastructure, led team meetings, and oversaw club design teams.</li>
-                  <li>Served as leader of Raspberry Pi-based maze-solving robot design team, implementing <a href="https://github.com/matthew-richard/imu_robotics_club" target="_blank">Python interface to the device's IMU sensor.</a></li>
+                  <li>Served as leader of Raspberry Pi-based maze-solving robot design team, implementing <a href="https://github.com/matthew-richard/imu_robotics_club" target="_blank">Python interface</a> to the device's IMU sensor.</li>
                   <li>Assisted in fund acquisition and and design of team's custom quadcopter.</li>
-                  <li>Member of design team for beer pong-playing robot.</li>
+                  <li>Member of design team for beer pong robot.</li>
                 </ul>
               </div>
               <div>
@@ -148,7 +168,7 @@
                 <ul>
                   <li>Team of four won 1st prize in <a href="https://hophacks.com/" target="_blank">Hophacks</a> Spring 2014 for building 3D music visualizer in Unity, viewable in VR. (C#)</li>
                   <li>Team of four won 3rd prize in <a href="https://hophacks.com/" target="_blank">Hophacks</a> Spring 2015 for developing a Venmo-based money geocaching game for Android. (Java)</li>
-                  <li>For Google's humanitarian <a href="https://sites.google.com/site/hack4humanitynyc/" target="_blank">Hack4Humanity</a> hackathon, team of four built Android app for concealing sensitive information on journalists' phones, tricking Android's file system into thinking some of the user's photos weren't present. (Java)</li>
+                  <li>For Google's 2014 humanitarian <a href="https://sites.google.com/site/hack4humanitynyc/" target="_blank">Hack4Humanity</a> hackathon, team of four built Android app for concealing sensitive information on journalists' phones, tricking Android's file system into thinking some of the user's photos weren't present. (Java)</li>
                 </ul>
               </div>
             </div>
@@ -166,12 +186,9 @@
           <div>
             <p class="resume-list__block-intro">Worked as full-stack developer on <a href="https://www.virtu.com/solutions/workflow/" target="_blank">Triton Valor</a>, Virtu's flagship Windows desktop trading software:</p>
             <ul>
-              <li>Programmed in C#, with .NET's <a href="https://docs.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf" target="_blank">WPF</a> frontend framework, using <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel" target="_blank">MVVM</a> pattern<span class="unnecessary-detail"> in a multithreaded environment</span>.</li>
-              <li>Worked with both Git and SVN version control.</li>
-              <li>Applied test-driven development principles, writing thorough unit tests in the <a href="https://nunit.org/" target="_blank">NUnit</a> framework.</li>
-              <li>Facilitated integration of <a href="https://www.splunk.com/" target="_blank">Splunk</a> log analysis software into dev team's workflow, enabling rapid analysis of app behavior across dev and QA instances.</li>
+              <li>Programmed in C#, with .NET's <a href="https://docs.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf" target="_blank">WPF</a> frontend framework, using <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel" target="_blank">MVVM</a> pattern<span class="unnecessary-detail"> in a multithreaded environment</span>. Worked with both Git and SVN version control. Applied test-driven development principles, writing thorough unit tests in the <a href="https://nunit.org/" target="_blank">NUnit</a> framework.</li>
               <div>
-                <li>Implemented frontend component of single-sign-on login workflow. Implemented front- and backend components of single-sign-on password reset workflow.</li>
+                <li>Implemented single-sign-on functionality, including password reset workflow.</li>
                 <ul class="unnecessary-detail">
                   <li>For login: Integrated with Nader's TSFApi changes, where Valor invoked FetchCredentials and supplied a callback for entering the SSO passcode.</li>
                   <div>
@@ -185,7 +202,19 @@
                 </ul>
               </div>
               <div>
-                <li>Automated various development tasks via Powershell and Bash scripting.</li>
+                <li>Integrated frontend with legacy backend components while ensuring backwards compability.</li>
+                <ul class="unnecessary-detail">
+                  <li></li>
+                </ul>
+              </div>
+              <div>
+                <li>Achieved 50% performance increase by compressing messages between client and server.</li>
+                <ul class="unnecessary-detail">
+                  <li></li>
+                </ul>
+              </div>
+              <div>
+                <li>Automated various development tasks via Powershell and Bash scripting, optimizing dev and QA testing workflows by 10%.</li>
                 <ul class="unnecessary-detail">
                   <li>Copied Valor workspaces (stored in SQL database) across versions and across users</li>
                   <li>Upgraded Nuget packages across every project in the repo</li>
@@ -193,6 +222,7 @@
                   <li>Started Valor logged in as a given user. Ability to Set-ActiveTPUser, Set-ActiveValorExeDir, and then bind those commands to hotkeys.</li>
                 </ul>
               </div>
+              <li>Facilitated integration of <a href="https://www.splunk.com/" target="_blank">Splunk</a> log analysis software into dev team's workflow, enabling rapid analysis of app behavior across dev and QA instances.</li>
               <li class="unnecessary-detail">Team used Jenkins for continuous integration and Bitbucket for Git hosting.</li>
             </ul>
           </div>
@@ -211,7 +241,7 @@
                   </ul>
               </div>
               <div>
-                <li>Wrote <a href="https://github.com/ccvl/detail-api" target="_blank">Python API</a> for working with the competition's multi-task dataset (forked from the <a href="https://github.com/cocodataset/cocoapi" target="_blank">MS COCO dataset API</a>).</li>
+                <li>Wrote <a href="https://github.com/ccvl/detail-api" target="_blank">Python API</a> for working with the competition's multi-task dataset (forked from the <a href="https://github.com/cocodataset/cocoapi" target="_blank">MS COCO API</a>).</li>
                 <ul class="unnecessary-detail">
                   <li>Added getMask(), getAnns(), getImgs(), getCats(), getBounds(), getOccl() functions, as well as show*() functions to visualize those tasks' data</li>
                   <li>Personal repo clone is <a href="https://github.com/matthew-richard/detail-api" target="_blank">here</a>. Personal dev repo clone is <a href="https://github.com/matthew-richard/detail-dev" target="_blank">here</a></li>
@@ -281,7 +311,7 @@
                 </ul>
               </div>
               <div>
-                <li>Contributed to app which generated mesh from camera depth data. Offloaded data processing to separate thread, dramatically improving app responsiveness.</li>
+                <li>Contributed to app which generated mesh from camera depth data. Offloaded data processing to separate thread, dramatically improving app responsiveness. (C++)</li>
                 <ul class="unnecessary-detail">
                   <li>Relevant repo <a href="https://github.com/matthew-richard/in-hand-scanner" target="_blank">here</a></li>
                   <li>This was a modified version of PCL's in-hand-scanner app, which generated 3D meshes from consecutive frames of depth data. Adjacent frames were aligned (<a href="https://en.wikipedia.org/wiki/Image_registration" target="_blank">registered</a>) using <a href="https://en.wikipedia.org/wiki/Iterative_closest_point" target="_blank">Iterative Closest Point</a> and then integrated into a single mesh.</li>
@@ -300,7 +330,7 @@
           <p class="resume-list__block-date">January 2015 - September 2015 (Baltimore, MD)</p>
           <div>
             <ul>
-              <li>Prototyped a <a href="https://www.blender.org/" target="_blank">Blender</a>-based parametrized scene generator for <a href="https://krieger.jhu.edu/mbi/directory/ed-connor/" target="_blank">Dr. Ed Connor</a>'s <a href="https://en.wikipedia.org/wiki/Evolutionary_algorithm" target="_blank">evolutionary algorithm</a>-based research into the mammalian visual cortex.</li>
+              <li>Prototyped a <a href="https://www.blender.org/" target="_blank">Blender</a>-based parametrized scene generator for <a href="https://krieger.jhu.edu/mbi/directory/ed-connor/" target="_blank">Dr. Ed Connor</a>'s <a href="https://en.wikipedia.org/wiki/Evolutionary_algorithm" target="_blank">evolutionary algorithm</a>-based research into the mammalian visual cortex. (Python)</li>
               <li class="unnecessary-detail">Dr. Connor had formerly been using an OpenGL and Java based implementation to generate scenes entirely programmatically. Switching to Blender scripts would have allowed for manual coarse control over the images produced (via manipulation of the scene in the Blender GUI) while allowing for programmatic modification, which was necessary for the the lab's <a href="https://en.wikipedia.org/wiki/Evolutionary_algorithm" target="_blank">evolutionary algorithms</a> to measure neurological responses to various image stimuli and then tweak those stimuli accordingly.</li>
               <li class="unnecessary-detail">One of the prototypes was a Blender script that automatically ran a physics sim and rendered the result using Blender's ray tracing engine. This was applicable to Dr. Connor's work, since his lab was interested in determining whether certain neurons were specialized to detect physically stable (i.e. firmly planted on the ground, not precarious) object scenes, as opposed to physically unstable ones (e.g. a cube resting on one of its corners).</li>
               <li class="unnecessary-detail">Repo containing scripts is <a href="https://github.com/matthew-richard/connor-lab" target="_blank">here</a></li>
@@ -312,11 +342,25 @@
           <p class="resume-list__block-position">Software Engineering Contractor</p>
           <p class="resume-list__block-date">June 2014 - August 2014 (Madison, CT)</p>
           <div>
-            <p class="resume-list__block-intro">Programmed in C++ to reduce memory consumption and increase speed of automated assay design software:</p>
             <ul>
-              <li>Compared in-memory representations of DNA sequences, measuring tradeoffs between size and performance using profiling utilities.</li>
-              <li class="unnecessary-detail">Collected and analyzed profiling data using <a href="http://kcachegrind.sourceforge.net/html/Home.html" target="_blank">Kcachegrind</a> Linux utility</li>
-              <li>Worked in a Linux-based environment and wrote Bash scripts to automate development tasks</li>
+              <li>Programmed in C++ to reduce memory consumption and increase speed of automated assay design software. Measured tradeoffs betwen size and performance using profiling utilities.</li>
+              <li class="unnecessary-detail">The name of the automated assay design software was Daydreamer. We ran tests on a shared machine named "darwin" that ran CentOS Linux. It searched for DNA substrings, aka oligonucleotides aka oligos, that were unique to the genomes of various pathogens.</li>
+              <li class="unnecessary-detail"><a href="https://github.com/seqan/seqan" target="_blank">SeqAn</a> library was used to represent DNA sequences.</li>
+              <li class="unnecessary-detail"><a href="https://en.wikipedia.org/wiki/Message_Passing_Interface" target="_blank">MPI</a> was used for communication across threads.</li>
+              <div>
+                <li>Implemented memory mapping, bit packing, and pooled allocation of DNA sequences, achieving 10% memory decrease and 20% speed increase.</li>
+                <ul class="unnecessary-detail">
+                  <li>It turned out that bit-packed sequences could take up *more* memory because in addition to the packed sequence, they stored a 64-bit integer representing the length of the sequence.  For 32-nucleotide sequences (8 bytes when packed, plus 8 bytes of length int64 = 16 bytes) or shorter, they could take up as much or more space than the unpacked sequences (which used one byte per 2 nucleotides).</li>
+                  <li>I was able to slightly mitigate this issue by storing all referenced sequences in one contiguous block, so that sequences that weren't byte-aligned no longer took up a few extra bits of memory.</li>
+                  <li>Additional space was taken up by the memory overhead of allocating a large number of short memory segments. Each memory segment was word- or page-aligned and so took up more space than the data structures the memory was used for. This was mitigated by using a "pooled" memory strategy where pages of memory were allocated at a time and then the application managed them from there.</li>
+                  <li>The pooled memory strategy also included a per-page stack for freed elements, so that memory for freed elements could be reused. Once the stack became the size of the page, the page itself could be deallocated. There may also have been "compacting" step (sort of like garbage collection), where once a page crossed a certain "freed" threshold, I moved elements from that page to other pages and freed the page. </li>
+                  <li><a href="https://en.wikipedia.org/wiki/Memory-mapped_file" target="_blank">Memory mapping</a> is the act of mapping the contents of a file to the virtual memory of a process. This doesn't necessarily require the entire file to be loaded into memory at once, though of course it requires there to be a large enough address space to contain every location in the file (Not a problem on 64-bit systems). Typically, the file is loaded into memory one page at a time, lazily (i.e. if a portion of the file is never accessed, it is not loaded into memory), and the physical memory used is the OS's file cache / page cache. Benefits: Avoid read/write system calls, which are expensive; avoid "thrashing", which is simultaneous reading/writing from OS cache to to disk which happens when trying to load into RAM a file that's bigger than the memory available; save memory due to lazy loading; linear file access is faster, since it only requires disk access when a new page boundary is crossed.</li>
+                  <li>Memory mapping was useful in the initial phase of Daydreamer, where it was loading entire genomes and building up lists of candidate oligos. During those phases, it was cheap to store oligos as (head,len) tuples, where head was a pointer to the beginning of the oligo in the genome string. In later phases, the genomes were unloaded, so this representation was no longer useful. </li>
+                  <li>Reduced peak RAM (RSS - resident set size ram, i.e. ram in physical memory) from 19.9 GB to 17.2 GB. Reduced time to complete from 37 min to 23 min.</li>
+                </ul>
+              </div>
+              <li class="unnecessary-detail">Collected and analyzed profiling data using Valgrind's <a href="https://valgrind.org/docs/manual/cl-manual.html" target="_blank">Callgrind</a> tool, and used <a href="http://kcachegrind.sourceforge.net/html/Home.html" target="_blank">KCachegrind</a> to visualize its output.</li>
+              <li class="unnecessary-detail">Worked in a Linux-based environment and wrote Bash scripts to automate development tasks.</li>
             </ul>
           </div>
         </div>
