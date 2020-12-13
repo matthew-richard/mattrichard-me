@@ -64,12 +64,12 @@
       }
     }
 
-    ul.inline-rectangle-list {
+    ul.inline-pill-list {
       margin-left: 10px;
 
       li{
         display: inline-block;
-        background: transparentize($color-accent, 0.95);
+        border: 1px solid transparentize($color-accent, .5);
         padding: 0px 8px;
         border-radius: 8px;
       }
