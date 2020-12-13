@@ -68,10 +68,9 @@
       margin-left: 10px;
 
       li{
-        display: inline;
-        white-space: nowrap;
+        display: inline-block;
         background: transparentize($color-accent, 0.95);
-        padding: 1px 8px;
+        padding: 0px 8px;
         border-radius: 8px;
       }
     }
