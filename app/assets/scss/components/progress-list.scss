@@ -29,11 +29,6 @@
     padding: 8px;
     margin-bottom: 6px;
 
-    min-width: 160px;
-    @media screen and (max-width: 550px){
-      min-width: 85px;
-    }
-
     p{
       width: 100%;
       font-family: $font-family-additional;
@@ -54,6 +49,8 @@
 
 
     .progress{
+      display: none;
+
       height: 6px;
       margin: 0px -2px;
 
