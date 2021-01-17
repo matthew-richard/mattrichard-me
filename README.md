@@ -15,7 +15,28 @@ The Docker image stands up a session in [tmux](https://github.com/tmux/tmux/wiki
 
 ```
 app/ - The NodeJS app.
+  index.html - Front page HTML
+  app.js - NodeJS app core logic
+  gulfile.js - Gulp tasks
+  assets/ - Site assets e.g. fonts, images, javascript, documents, CSS.
+    css/ - CSS rendered from Sass files in scss/
+    scss/ - Sass files for generating CSS
+      base/scaffolding.scss - Currently using this as a catch-all file for global CSS rules
+      components/ - Styling for individual page sections
+      settings/variables.scss - Variables referenced in other Sass files, e.g. main theme colors
+      vendor/ - Third-party SCSS. Do not modify.
+      main.scss - Parent SCSS file that includes all others. Compiled to assets/css/main.css.
+    js/ - JavaScript files
+      menu.js and mobile-menu.js - Logic for nav menu
+      section.js - Logic for animating header text
+      show-details.js - Logic for hiding/showing .unnecessary-detail elements based on URL
+  blog/ - Text for future blog posts
+
 docker/ - The docker image definition.
+  Dockerfile - File used to generate the docker image with the "docker build" command (see setup/build.sh).
+  setup/ - Setup scripts to be run by the Docker image.
+  host/ - Util scripts and files for running the Docker image on the host.
+  data/ - Directories used as volumes by scripts in host/, capturing persisted output from the Docker image.
 ```
 
 # Two Ways to Run #
