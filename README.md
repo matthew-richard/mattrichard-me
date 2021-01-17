@@ -21,15 +21,7 @@ app/ - The NodeJS app.
   assets/ - Site assets e.g. fonts, images, javascript, documents, CSS.
     css/ - CSS rendered from Sass files in scss/
     scss/ - Sass files for generating CSS
-      base/scaffolding.scss - Currently using this as a catch-all file for global CSS rules
-      components/ - Styling for individual page sections
-      settings/variables.scss - Variables referenced in other Sass files, e.g. main theme colors
-      vendor/ - Third-party SCSS. Do not modify.
       main.scss - Parent SCSS file that includes all others. Compiled to assets/css/main.css.
-    js/ - JavaScript files
-      menu.js and mobile-menu.js - Logic for nav menu
-      section.js - Logic for animating header text
-      show-details.js - Logic for hiding/showing .unnecessary-detail elements based on URL
   blog/ - Text for future blog posts
 
 docker/ - The docker image definition.
