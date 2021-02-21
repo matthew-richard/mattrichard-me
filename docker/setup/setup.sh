@@ -72,7 +72,7 @@ if ! is-debug ; then
     mkdir /etc/letsencrypt/www
     certbot certonly --agree-tos --noninteractive \
                      --webroot -w /etc/letsencrypt/www \
-                     -d $WEBSITE_DOMAIN -m $WEBSITE_CERTBOT_EMAIL
+                     -d $WEBSITE_DOMAIN,www.$WEBSITE_DOMAIN -m $WEBSITE_CERTBOT_EMAIL
 
     if ! [ -e /etc/letsencrypt/live/$WEBSITE_DOMAIN/fullchain.pem -a \
            -e /etc/letsencrypt/live/$WEBSITE_DOMAIN/privkey.pem ]; then
