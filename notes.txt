@@ -1,0 +1,6 @@
+* todo
+  - pass .aws creds from EC2 server to docker image
+  - add aws endpoint (PUT to s3) in app.js
+  - may need to install aws-sdk package, which is blocked by broken NPM
+  - serve small static HTML form (or just upload with curl -T)
+  - params: file. path (object key).
